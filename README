@@ -1,0 +1,31 @@
+INSTALATION:
+------------
+
+Copy the content in /bin to your rootfs folder, make sure to have the GPU libraries and driver correctly installed.
+
+CROSS-COMPILING:
+------------
+
+This is step is done automatically by Yocto 
+
+THE DEMO:
+------------
+
+This demo shows a simple opengl es 2.0 usage (10 cubes bouncing around the screen) texturized with data from bitmap files.
+
+
+TROUBLESHOTS
+------------
+
+Make sure to have the images in the same folder as the binary (you can find them in ../bin folder). Otherwise errors will occur. 
+
+
+AUTHOR:
+--------
+
+Andre Silva
+andreluizeng@yahoo.com.br
+andre.silva@freescale.com
+
+
+
