@@ -6,15 +6,13 @@ MAKE			= make
 all: $(APPNAME)
 
 $(APPNAME): 
-				$(CD) $(SRCDIR); \
-				$(MAKE) -f Makefile distclean; \
-				$(MAKE) -f Makefile install;
-clean:
+	$(MAKE) -C src
 
-	$(CD) $(SRCDIR); \
-	$(MAKE) -f Makefile clean; 
+install:
+	$(MAKE) -C src install
+
+clean:
+	$(MAKE) -C src clean
 
 distclean: clean
-
-	$(CD) $(SRCDIR); \
-	$(MAKE) -f Makefile distclean; 
+	$(MAKE) -C src distclean
