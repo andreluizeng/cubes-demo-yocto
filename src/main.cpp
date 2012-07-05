@@ -404,9 +404,25 @@ int main (int argc, char **argv)
 	cube8->CubeSetProjMatrix(matProj);
 	cube9->CubeSetProjMatrix(matProj);
 	cube10->CubeSetProjMatrix(matProj);
+
+//Enables the Delete Window event
+//#ifdef EGL_USE_X11
+//	XEvent event;
+//	bool exit_flag = false;
 	
+//	while (! exit_flag)
+//	{
+//		XNextEvent(window->display, &event);
+
+//		if ((event.type == ClientMessage) && (event.xclient.data.l[0] == (signed)window->wmDelete)) 
+//		{
+//			exit_flag = true;
+//		}
+//#else
+
 	while (!window->Kbhit ())
 	{
+//#endif
 		Render ();
 
 		// Measure the frame rate.

@@ -43,6 +43,9 @@
 #ifdef EGL_USE_X11
 #include <X11/X.h>
 #include <X11/Xlib.h>
+#include <X11/Xutil.h>
+#include <X11/Xos.h>
+#include <X11/Xatom.h>
 #endif 
 
 #define VERTEX_ARRAY	0
@@ -62,6 +65,7 @@ class GLUtils
 		
 		#ifdef EGL_USE_X11
 			Display 			*display;
+			Atom		 		wmDelete;
 		#endif
 
 		EGLDisplay	egldisplay;

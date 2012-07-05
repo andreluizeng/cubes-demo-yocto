@@ -53,6 +53,13 @@ bool GLUtils::GLInit (void)
 	EGLint ContextAttribList[] =	{EGL_CONTEXT_CLIENT_VERSION, 2,	EGL_NONE};
 	
 	#ifdef EGL_USE_X11
+	
+		char *window_name;
+		XTextProperty windowName;
+		
+		window_name = (char *) malloc (sizeof (char) * 20);
+		strcpy (window_name, "GLCubes Demo");
+	 
 		printf("XOpenDisplay \n");
 		display = XOpenDisplay(NULL);
 		assert(display != NULL);
@@ -87,9 +94,19 @@ bool GLUtils::GLInit (void)
 		assert(numconfigs == 1);
 
 		printf("XCreateSimpleWindow \n");
+		
+		if ( XStringListToTextProperty(&window_name, 1, &windowName) == 0 ) 
+		{
+			fprintf(stderr, "Structure allocation for windowName failed.\n");
+			return 0;
+		}
+		
 		window = XCreateSimpleWindow(display, rootwindow, 0, 0, 400, 533, 0, 0, WhitePixel (display, screen));
-
+		XSetWMProperties(display, window, &windowName, NULL, NULL, 0, NULL, NULL, NULL);
 		XMapWindow(display, window);
+		
+		wmDelete=XInternAtom(display, "WM_DELETE_WINDOW", true);
+		XSetWMProtocols(display, window, &wmDelete, 1);
 
 		printf("*eglCreateWindowSurface \n");
 		eglsurface = eglCreateWindowSurface(egldisplay, eglconfig, window, NULL);
